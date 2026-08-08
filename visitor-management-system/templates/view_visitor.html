@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}View Visitor{% endblock %}
+{% block content %}
+<h2 class="heading-gradient">Visitor Details</h2>
+<div style="text-align: center; margin-bottom: 20px;">
+  <img src="{{ url_for('static', filename='images/' + (visitor[11] if visitor[11] else 'default_user.png')) }}"
+       alt="Visitor Photo"
+       width="150"
+       style="border-radius: 8px;">
+</div>
+<ul>
+  <li><strong>Name:</strong> {{ visitor[1] }}</li>
+  <li><strong>Phone:</strong> {{ visitor[2] }}</li>
+  <li><strong>Email:</strong> {{ visitor[3] }}</li>
+  <li><strong>Address:</strong> {{ visitor[4] }}</li>
+  <li><strong>Purpose:</strong> {{ visitor[5] }}</li>
+  <li><strong>Check-in:</strong> {{ visitor[8] }}</li>
+  <li><strong>Check-out:</strong> {{ visitor[9] or "Pending" }}</li>
+  <li><strong>Department:</strong> {{ visitor[12] }}</li>
+  <li><strong>Host:</strong> {{ visitor[13] }}</li>
+</ul>
+
+<a href="{{ url_for('visitor.dashboard') }}">← Back to Dashboard</a>
+{% endblock %}

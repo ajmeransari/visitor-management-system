@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Manage Departments{% endblock %}
+{% block content %}
+<h2 class="heading-gradient">Manage Departments</h2>
+
+<form method="POST">
+    <input type="text" name="department" placeholder="New Department Name" required>
+    <button type="submit">Add Department</button>
+</form>
+
+<hr>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Department Name</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for dept in departments %}
+        <tr>
+            <td>{{ dept[0] }}</td>
+            <td>{{ dept[1] }}</td>
+            <td>
+                <a href="{{ url_for('user.delete_department', id=dept[0]) }}" onclick="return confirm('Delete this department?')">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

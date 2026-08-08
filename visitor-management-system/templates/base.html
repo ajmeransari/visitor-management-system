@@ -1,0 +1,60 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> {# IMPORTANT: Ensure this meta tag is present for responsiveness #}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    {# Font Awesome for hamburger icon (optional, but easy) #}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <nav class="main-nav"> {# Added class "main-nav" #}
+        <div class="nav-header">
+            <h1 class="heading-gradient nav-title">Visitor Management System</h1> {# Added class "nav-title" #}
+            <button class="hamburger-menu" aria-label="Toggle navigation menu">
+                <i class="fas fa-bars"></i> {# Hamburger icon #}
+            </button>
+        </div>
+
+        <div class="nav-links" id="mobile-menu"> {# Added class "nav-links" and id "mobile-menu" #}
+            <button class="close-menu" aria-label="Close navigation menu">
+                <i class="fas fa-times"></i> {# Close icon #}
+            </button>
+            <a href="{{ url_for('visitor.dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('visitor.add_visitor') }}">Add Visitor</a>
+            <a href="{{ url_for('visitor.export_visitors') }}">Export</a>
+            {% if current_user.is_authenticated and current_user.role == 'admin' %}
+            <a href="{{ url_for('user.manage_departments') }}">Manage Departments</a>
+            <a href="{{ url_for('user.manage_hosts') }}">Manage Hosts</a>
+            <a href="{{ url_for('user.manage_users') }}">Manage Users</a>
+            {% endif %}
+            <a href="{{ url_for('auth.logout') }}">Logout</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% for category, message in messages %}
+                <div class="flash {{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+    <script>
+        // DataTables init (if not handled inline in main.js)
+        $(document).ready(function () {
+            if ($('#visitorTable').length) {
+                $('#visitorTable').DataTable();
+            }
+        });
+    </script>
+</body>
+</html>

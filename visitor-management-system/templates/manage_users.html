@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Manage Users{% endblock %}
+{% block content %}
+<h2 class="heading-gradient">Manage Admin / Sub-users</h2>
+
+<h3>Add New User</h3>
+<form method="POST">
+    <input type="text" name="username" placeholder="Username" required><br>
+    <input type="password" name="password" placeholder="Password" required><br>
+    <label>Role:</label>
+    <select name="role" required>
+        <option value="subuser">Sub-user</option>
+        <option value="admin">Admin</option>
+    </select><br>
+    <button type="submit">Add User</button>
+</form>
+
+<hr>
+
+<h3>Existing Users</h3>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Role</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+        <tr>
+            <td>{{ user[0] }}</td>
+            <td>{{ user[1] }}</td>
+            <td>{{ user[2] }}</td>
+            <td>
+                {% if user[0] != current_user.id %} {# Prevent deleting own account #}
+                <a href="{{ url_for('user.delete_user', id=user[0]) }}" onclick="return confirm('Are you sure you want to delete user {{ user[1] }}?')">Delete</a>
+                {% else %}
+                (Your Account)
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

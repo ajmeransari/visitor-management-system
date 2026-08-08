@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Add Visitor{% endblock %}
+{% block content %}
+<h2 class="heading-gradient">Add New Visitor</h2>
+<form method="POST">
+  <input type="text" name="name" placeholder="Full Name" required><br>
+  <input type="text" name="phone" placeholder="Phone Number" required><br>
+  <input type="email" name="email" placeholder="Email"><br>
+  <input type="text" name="address" placeholder="Address"><br>
+  <textarea name="purpose" placeholder="Purpose of Visit" required></textarea><br>
+
+  <label>Department:</label>
+  <select name="department" required>
+    {% for dept in departments %}
+    <option value="{{ dept[0] }}">{{ dept[1] }}</option>
+    {% endfor %}
+  </select><br>
+
+  <label>Host:</label>
+  <select name="host" required>
+    {% for host in hosts %}
+    <option value="{{ host[0] }}">{{ host[1] }}</option>
+    {% endfor %}
+  </select><br>
+
+  <button type="submit">Add Visitor</button>
+</form>
+{% endblock %}
