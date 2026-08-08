@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Manage Hosts{% endblock %}
+{% block content %}
+<h2 class="heading-gradient">Manage Hosts</h2>
+
+<form method="POST">
+    <input type="text" name="host_name" placeholder="Host Name" required>
+
+    <label>Department:</label>
+    <select name="department_id" required>
+        {% for dept in departments %}
+        <option value="{{ dept[0] }}">{{ dept[1] }}</option>
+        {% endfor %}
+    </select>
+
+    <button type="submit">Add Host</button>
+</form>
+
+<hr>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Host Name</th>
+            <th>Department</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for host in hosts %}
+        <tr>
+            <td>{{ host[0] }}</td>
+            <td>{{ host[1] }}</td>
+            <td>{{ host[2] }}</td>
+            <td>
+                <a href="{{ url_for('user.delete_host', id=host[0]) }}" onclick="return confirm('Delete this host?')">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

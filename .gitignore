@@ -1,0 +1,9 @@
+# Secrets
+.env
+
+#The python files and VScode configuration should be hidden 
+venv/
+.venv/
+__pycache__/
+*.pyc
+.vscode/

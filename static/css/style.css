@@ -1,0 +1,211 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #f7f8fc;
+    padding: 20px; 
+    margin: 0;
+    overflow-x: hidden;
+}
+
+.container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 8px #ddd;
+    margin: 0 auto; 
+    max-width: 1200px; 
+}
+
+nav {
+    background: #fff;
+    padding: 10px;
+    box-shadow: 0 0 10px #ccc;
+    margin-bottom: 20px;
+}
+
+
+.heading-gradient {
+    font-size: 28px;
+    font-weight: bold;
+    background: linear-gradient(90deg, #7002f6, #f905ec);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+input, textarea, select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    box-sizing: border-box; 
+}
+
+button {
+    padding: 10px 20px;
+    background: #2575fc;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #1a5bbd;
+}
+
+
+.flash {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.flash.success { background-color: #d4edda; color: #155724; }
+.flash.danger  { background-color: #f8d7da; color: #721c24; }
+.flash.info    { background-color: #d1ecf1; color: #0c5460; }
+
+
+
+.main-nav {
+    background: #fff;
+    padding: 10px 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; 
+    position: sticky; 
+    top: 0;
+    z-index: 1000; 
+    width: auto; 
+    box-sizing: border-box; 
+}
+
+.nav-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%; 
+}
+
+.nav-title {
+    margin: 0;
+    padding: 5px 0;
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: #333;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    white-space: nowrap;
+}
+
+.main-nav a:hover {
+    background-color: #f0f0f0;
+}
+
+.hamburger-menu {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: #2575fc;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.nav-links {
+    display: none; 
+    flex-direction: column; 
+    width: 100%;
+    background: #fff; 
+    position: fixed; 
+    top: 0;
+    right: 0; 
+    height: 100%;
+    padding: 20px;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+    transform: translateX(100%); 
+    transition: transform 0.3s ease-in-out; 
+    z-index: 1001;
+    overflow-y: auto; 
+    box-sizing: border-box; 
+}
+
+.nav-links.active {
+    transform: translateX(0); 
+    display: flex; 
+}
+
+.nav-links a {
+    color: #333;
+    padding: 15px 0;
+    text-align: left;
+    font-size: 1.2em;
+    border-bottom: 1px solid #eee;
+    width: 100%;
+    white-space: normal; 
+}
+
+.nav-links a:last-child {
+    border-bottom: none;
+}
+
+
+.close-menu {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 30px;
+    color: #666;
+    cursor: pointer;
+    z-index: 1002;
+}
+
+@media (min-width: 768px) {
+    .nav-header {
+        width: auto; 
+    }
+
+    .hamburger-menu {
+        display: none;
+    }
+
+    .nav-links {
+        display: flex;
+        flex-direction: row;
+        position: static; 
+        height: auto;
+        padding: 0;
+        box-shadow: none;
+        transform: translateX(0); 
+        width: auto;
+        align-items: center;
+        margin-left: auto;
+    }
+
+    .nav-links a {
+        padding: 8px 15px;
+        border-bottom: none; 
+        font-size: 1em;
+    }
+
+    .close-menu {
+        display: none;
+    }
+
+    .main-nav .nav-title {
+        margin-right: 20px; 
+    }
+}
